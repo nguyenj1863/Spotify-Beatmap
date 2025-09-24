@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "client": "yarn --cwd client dev",
+    "server": "server\\venv\\bin\\python.exe server/app.py",
+    "install-server": "server\\venv\\bin\\pip.exe install -r server\\requirements.txt",
+    "dev": "concurrently -k -n client,server -c auto \"yarn client\" \"yarn server\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
