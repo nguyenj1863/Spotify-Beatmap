@@ -1,8 +1,11 @@
 {
   "entryPoints": ["client/src"],
   "entryPointStrategy": "expand",
-  "tsconfig": "client/tsconfig.json",
   "out": "client-docs",
+  "plugin": ["typedoc-theme-hierarchy"],
+  "theme": "hierarchy",
+  "tsconfig": "client/tsconfig.json",
+  "name": "Spotify",
   "includeVersion": true,
   "skipErrorChecking": true
 }
