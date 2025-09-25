@@ -1,7 +1,7 @@
 {
   "scripts": {
     "client": "yarn --cwd client dev",
-    "server": "server\\venv\\bin\\python.exe server/app.py",
+    "server": "server\\venv\\bin\\python.exe server/run.py",
     "install-server": "server\\venv\\bin\\pip.exe install -r server\\requirements.txt",
     "dev": "concurrently -k -n client,server -c auto \"yarn client\" \"yarn server\"",
     "docs": "typedoc --options typedoc.json"
