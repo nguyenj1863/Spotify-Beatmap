@@ -1,5 +1,5 @@
 from flask import Blueprint
-from services.auth_service import get_auth_url
+from app.services.auth_service import get_auth_url
 
 authorize_bp = Blueprint('auth', __name__)
 
