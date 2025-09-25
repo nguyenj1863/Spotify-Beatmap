@@ -1,5 +1,5 @@
 from flask import Blueprint
-from .authorize_route import authorize_bp
+from .auth_route import authorize_bp
 
 def init_routes(app):
     api=Blueprint('api', __name__, url_prefix='/api')
