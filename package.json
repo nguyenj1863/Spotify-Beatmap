@@ -3,9 +3,14 @@
     "client": "yarn --cwd client dev",
     "server": "server\\venv\\bin\\python.exe server/app.py",
     "install-server": "server\\venv\\bin\\pip.exe install -r server\\requirements.txt",
-    "dev": "concurrently -k -n client,server -c auto \"yarn client\" \"yarn server\""
+    "dev": "concurrently -k -n client,server -c auto \"yarn client\" \"yarn server\"",
+    "docs": "typedoc --options typedoc.json"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "concurrently": "^9.2.1",
+    "typedoc": "^0.28.13",
+    "typescript": "^5.9.2"
   }
 }

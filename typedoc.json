@@ -1,0 +1,8 @@
+{
+  "entryPoints": ["client/src"],
+  "entryPointStrategy": "expand",
+  "tsconfig": "client/tsconfig.json",
+  "out": "client-docs",
+  "includeVersion": true,
+  "skipErrorChecking": true
+}
