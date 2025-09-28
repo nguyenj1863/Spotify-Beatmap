@@ -4,7 +4,7 @@ const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 export const AUTH_URL = 'https://accounts.spotify.com/authorize';
 export const TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
-export type TokenSet = {
+type TokenSet = {
     access_token: string;
     token_type: 'Bearer';
     scope?: string;
