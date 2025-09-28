@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
 import { makePkcePair } from "@/lib/pkce";
-import { setCookie } from "@/lib/cookies";
+import { COOKIE_NAMES, setCookie } from "@/lib/cookies";
 import { AUTH_URL } from "@/lib/spotify";
 
 export async function GET() {
   const { codeVerifier, codeChallenge } = await makePkcePair();
   const state = crypto.randomUUID();
 
-  setCookie("sp_pkce_verifier", codeVerifier, 600);
-  setCookie("sp_oauth_state", state, 600);
+  await setCookie(COOKIE_NAMES.pkceVerifier, codeVerifier, 600);
+  await setCookie(COOKIE_NAMES.oauthState, state, 600);
 
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const redirectUri = process.env.SPOTIFY_REDIRECT_URI;

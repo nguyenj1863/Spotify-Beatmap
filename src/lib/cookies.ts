@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+import { cookies as nextCookies } from "next/headers";
 
 export const COOKIE_NAMES = {
     pkceVerifier: 'sp_pkce_verifier',
@@ -7,26 +7,29 @@ export const COOKIE_NAMES = {
 } as const;
 
 
-export const cookieOpts = {
+export const baseOpts = {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax' as const,
     path: '/',
 }
 
-export function setCookie(name: string, value: string, maxAgeSec?: number) {
-    cookies().set({
+export async function setCookie(name: string, value: string, maxAgeSec?: number) {
+    const store = await nextCookies();
+    store.set({
         name,
         value,
-        ...cookieOpts,
-        ...(maxAgeSec ? { maxAge: maxAgeSec } : {}),
-    });
+        ...baseOpts,
+        ...(maxAgeSec ? { maxAge: maxAgeSec } : {})
+    })
 }
 
-export function getCookie(name: string) {
-    return cookies().get(name)?.value;
+export async function getCookie(name: string) {
+    const store = await nextCookies();
+    return store.get(name)?.value;
 }
 
-export function deleteCookie(name: string) {
-    cookies().delete(name);
+export async function deleteCookie(name: string) {
+    const store = await nextCookies();
+    store.delete(name);
 }
