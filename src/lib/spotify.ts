@@ -43,3 +43,47 @@ export async function exchangeCodeForToken(
     return tokenSet;
 };
 
+export async function refreshAccessToken(
+    refresh_token: string
+): Promise<TokenSet> {
+    const body = new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token,
+        client_id: CLIENT_ID,
+    });
+
+    const res = await fetch(TOKEN_URL, { 
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+        cache: 'no-store',
+    });
+
+    if (!res.ok) {
+        throw new Error(`Token refresh failed: ${res.status} ${res.statusText}`);
+    }
+
+    const json = await res.json();
+    const tokenSet: TokenSet = {
+        ...json,
+        refresh_token: json.refresh_token ?? refresh_token,
+        obtained_at: Date.now(),
+    };
+    return tokenSet;
+};
+
+export function isExpired(t: TokenSet) {
+    return Date.now() >= t.obtained_at + (t.expires_in - 60) * 1000;
+}
+
+export async function spotifyFetch<T>(path: string, access_token: string): Promise<T> {
+    const res = await fetch(`https://api.spotify.com/v1/${path}`, { 
+        headers: { Authorization: `Bearer ${access_token}` },
+        cache: 'no-store',
+    });
+
+    if(!res.ok) {
+        throw new Error(`Spotify API request failed: ${res.status} ${res.statusText}`);
+    }
+    return res.json();
+}
