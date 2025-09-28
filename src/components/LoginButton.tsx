@@ -1,6 +1,15 @@
+'use client';
+
 function LoginButton() {
+    function handleClick() {
+        window.location.href = '/api/spotify/login';
+    };
     return (
-        <button>Login with Spotify</button>
+        <button
+            onClick={handleClick}
+        >
+            Login with Spotify
+        </button>
     );
 }
 
