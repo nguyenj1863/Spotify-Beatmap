@@ -1,25 +1,35 @@
-function generateRandomString (length) {
-  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+function generateRandomString(length: number) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const values = crypto.getRandomValues(new Uint8Array(length));
-  return values.reduce((acc, x) => acc + possible[x % possible.length], "");
+  const randomString = Array.from(values)
+    .map(x => chars[x % chars.length])
+    .join('');
+  return randomString;
 }
 
-async function sha256(plain) {
-  const encoder = new TextEncoder()
-  const data = encoder.encode(plain)
-  return window.crypto.subtle.digest('SHA-256', data)
+async function sha256(plain: string) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(plain);
+  const digest = await crypto.subtle.digest('SHA-256', data);
+  return digest;
 }
 
-function base64encode(input) {
-  return btoa(String.fromCharCode(...new Uint8Array(input)))
+function base64UrlEncode(input: ArrayBuffer) {
+  const base64 = btoa(String.fromCharCode(...new Uint8Array(input)));
+  const base64Url = base64
     .replace(/=/g, '')
     .replace(/\+/g, '-')
     .replace(/\//g, '_');
+  return base64Url;
 }
 
 export async function makePkcePair() {
-    const code_verifier = generateRandomString(64);
-    const hashed = await sha256(code_verifier);
-    const code_challenge = base64encode(hashed);
-    return { code_verifier, hashed, code_challenge };
+  const codeVerifier = generateRandomString(64);
+  const hashBuffer = await sha256(codeVerifier);
+  const codeChallenge = base64UrlEncode(hashBuffer);
+
+  return {
+    codeVerifier,
+    codeChallenge,
+  };
 }
