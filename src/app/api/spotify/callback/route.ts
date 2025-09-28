@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
 import { COOKIE_NAMES, getCookie, setCookie, deleteCookie } from "@/lib/cookies";
 import { exchangeCodeForToken } from "@/lib/spotify";
 
