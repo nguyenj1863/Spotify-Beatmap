@@ -28,10 +28,7 @@ export async function GET(req:Request) {
 
     await setCookie(COOKIE_NAMES.session, JSON.stringify(tokens), tokens.expires_in);
 
-    const h = await headers();
-    const host  = h.get("x-forwarded-host") ?? h.get("host")!;
-  const proto = h.get("x-forwarded-proto") ?? "http";
-  const base  = `${proto}://${host}`;
+    const base = process.env.BASE_URL
 
     const url = new URL(`${base}/dashboard`);
     return NextResponse.redirect(url);
