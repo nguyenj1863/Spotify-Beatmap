@@ -6,10 +6,10 @@ export const TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
 export type TokenSet = {
     access_token: string;
-    refresh_token?: string;
-    expires_in: number;
     token_type: 'Bearer';
     scope?: string;
+    expires_in: number;
+    refresh_token?: string;
     obtained_at: number;
 }
 
@@ -18,10 +18,10 @@ export async function exchangeCodeForToken(
     code_verifier: string
 ): Promise<TokenSet> { 
     const body = new URLSearchParams({
-        client_id: CLIENT_ID,
         grant_type: 'authorization_code',
         code,
         redirect_uri: REDIRECT_URI,
+        client_id: CLIENT_ID,
         code_verifier,
     });
     
