@@ -14,21 +14,14 @@ export async function GET() {
   const redirectUri = process.env.SPOTIFY_REDIRECT_URI;
   const scopes = process.env.SPOTIFY_SCOPES ?? "user-read-email";
 
-  if (!clientId || !redirectUri) {
-    return NextResponse.json(
-      { error: "Missing env vars: SPOTIFY_CLIENT_ID or SPOTIFY_REDIRECT_URI" },
-      { status: 500 }
-    );
-  }
-
   const params = new URLSearchParams({
-    client_id: clientId,
     response_type: "code",
-    redirect_uri: redirectUri,
+    client_id: clientId,
+    state,
     scope: scopes,
     code_challenge_method: "S256",
     code_challenge: codeChallenge,
-    state,
+    redirect_uri: redirectUri,
   });
 
   const url = `${AUTH_URL}?${params.toString()}`;
