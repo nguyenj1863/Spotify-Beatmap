@@ -41,7 +41,7 @@ export default function Page() {
     <div className="glass-card w-full max-w-md p-8 rounded-xl text-white">
       <header className="text-center mb-10">
         <Logo />
-        <h1 className="text-3xl font-bold mt-4 text-[#1db954]">Spotify Analyst</h1>
+        <h1 className="text-3xl font-bold mt-4 text-[#1db954]">Spotify BeatMap</h1>
         <p className="text-gray-300 mt-2">
           Discover your listening habits and future favorites.
         </p>
