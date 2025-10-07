@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+:root { color-scheme: dark; }
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, "Noto Sans";
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #0a0a0a;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Layering for UI elements */
+.glass-card,
+.spotify-button {
+  position: relative;
+  z-index: 2;
+}
+
+/* Spotify button styling */
+.spotify-button {
+  transition: all 0.2s ease-in-out;
+}
+
+.spotify-button:hover:not(:disabled) {
+  box-shadow: 0 0 20px rgba(29, 185, 84, 0.8);
+  transform: translateY(-2px);
+}
