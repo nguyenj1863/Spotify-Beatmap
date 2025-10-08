@@ -8,7 +8,9 @@ export async function GET(req:Request) {
     const state = searchParams.get("state");
     const err = searchParams.get("error");
 
-    if (err) return NextResponse.json({ error: err }, { status: 400 });
+    const base = process.env.BASE_URL
+
+    if (err) return NextResponse.redirect(new URL(`${base}/`));
 
     const storedState = await getCookie(COOKIE_NAMES.oauthState);
     const verifier = await getCookie(COOKIE_NAMES.pkceVerifier);
@@ -27,7 +29,6 @@ export async function GET(req:Request) {
 
     await setCookie(COOKIE_NAMES.session, JSON.stringify(tokens), tokens.expires_in);
 
-    const base = process.env.BASE_URL
 
     const url = new URL(`${base}/dashboard`);
     return NextResponse.redirect(url);
