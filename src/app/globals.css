@@ -29,3 +29,16 @@ body {
   box-shadow: 0 0 20px #1ed760;
   transform: translateY(-2px);
 }
+
+.white-glow {
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.white-glow:hover {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+               0 0 16px rgba(255, 255, 255, 0.6),
+               0 0 32px rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
