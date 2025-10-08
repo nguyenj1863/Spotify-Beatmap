@@ -6,6 +6,9 @@ const inter = Inter({ subsets: ['latin']});
 export const metadata = {
   title: "Spotify Analyst",
   description: "Discover your listening habits and future favorites",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
