@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import LoginButton from "@components/LoginButton";
 import Logo from '@components/Logo';
 
@@ -11,18 +12,22 @@ export default function Page() {
   const [message, setMessage] = useState<Message>(null);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const searchParams = useSearchParams();
 
   const showMessage = useCallback((text: string, type: MsgType) => {
     setMessage({ text, type });
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => setMessage(null), 3000);
   }, []);
 
   useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, []);
+    const errorParam = searchParams.get("error");
+    if (errorParam === "login_failed") {
+      showMessage("Failed to sign in. Please try again.", "error");
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete("error");
+      window.history.replaceState({}, "", url.toString());
+    }
+  }, [searchParams, showMessage]);
 
   const simulateLogin = useCallback(async () => {
     if (isLoggingIn) return;

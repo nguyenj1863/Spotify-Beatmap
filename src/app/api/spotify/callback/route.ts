@@ -10,7 +10,7 @@ export async function GET(req:Request) {
 
     const base = process.env.BASE_URL
 
-    if (err) return NextResponse.redirect(new URL(`${base}/`));
+    if (err) return NextResponse.redirect(new URL(`${base}/?error=login_failed`));
 
     const storedState = await getCookie(COOKIE_NAMES.oauthState);
     const verifier = await getCookie(COOKIE_NAMES.pkceVerifier);
