@@ -1,52 +1,85 @@
-'use client'
+"use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-type Track = { id: string, name: string, artist: { name: string }[] };
+type ImageObj = { url: string; width?: number; height?: number };
+type Album = { images?: ImageObj[] };
+type Artist = { id?: string; name: string };
+type Track = { id: string; name: string; album?: Album; artists?: Artist[] };
+type TopTracksResponse = { items?: Track[] } | Track[];
 
-function DashboardPage() {
-    const [tracks, setTracks] = useState<Track[] | null>(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+export default function DashboardPage() {
+  const [tracks, setTracks] = useState<Track[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-    async function handleGetTopTracks() {
-        setLoading(true);
-        setError(null);
-        try {
-            const res = await fetch('/api/spotify/top-tracks', { cache: 'no-store' });
-            if (!res.ok) {
-                const json = await res.json().catch(() => null);
-                throw new Error(json?.error || `Request failed: ${res.status} ${res.statusText}`);
-            }
-            const data = await res.json();
-            console.log(data);
-            setTracks(data.items ?? data);
-        } catch (err: any) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
+  const handleGetTopTracks = useCallback(async () => {
+    if (loading) return;
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/spotify/top-tracks", { cache: "no-store" });
+
+      // Handle common auth failure -> bounce back to login with an error flag if you want
+      if (res.status === 401) {
+        setError("Your session expired. Please sign in again.");
+        // optional: window.location.href = "/?error=login_failed";
+        return;
+      }
+
+      const data: TopTracksResponse = await res.json().catch(() => ({ items: [] }));
+
+      if (!res.ok) {
+        const msg = (data as any)?.error || `Request failed: ${res.status} ${res.statusText}`;
+        throw new Error(msg);
+      }
+
+      const items = Array.isArray(data) ? data : data.items ?? [];
+      setTracks(items);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Unexpected error fetching tracks.";
+      setError(msg);
+    } finally {
+      setLoading(false);
     }
-    return (
-        <div>
-            <h1>Dashboard</h1>
-            <button onClick={handleGetTopTracks} disabled={loading}>
-                {loading ? 'Loading...' : 'Get Top Tracks'}
-            </button>
+  }, [loading]);
 
-            {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-            {tracks && (
-                <ol>
-                    {tracks.map(track => (
-                        <li key={track.id}>
-                            <img src={track.album?.images?.[0]?.url} alt={track.name} width={64} height={64} />
-                            {track.name} - {track.artists?.map(a => a.name).join(', ')}
-                        </li>
-                    ))}
-                </ol>
-            )}
-        </div>
-    );
-};
+  return (
+    <div>
+      <h1>Dashboard</h1>
 
-export default DashboardPage;
+      <button onClick={handleGetTopTracks} disabled={loading} className="white-glow">
+        {loading ? "Loading..." : "Get Top Tracks"}
+      </button>
+
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
+
+      {tracks.length > 0 && (
+        <ol>
+          {tracks.map((track) => {
+            const img = track.album?.images?.[0]?.url;
+            const artists = track.artists?.map((a) => a.name).join(", ") ?? "";
+            return (
+              <li key={track.id} style={{ display: "flex", gap: 8, margin: "8px 0" }}>
+                {img && (
+                  <img
+                    src={img}
+                    alt={`${track.name} cover art`}
+                    width={64}
+                    height={64}
+                    style={{ borderRadius: 4, objectFit: "cover" }}
+                  />
+                )}
+                <span>
+                  <strong>{track.name}</strong>
+                  {artists ? ` — ${artists}` : ""}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+      )}
+    </div>
+  );
+}
