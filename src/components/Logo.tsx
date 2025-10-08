@@ -173,6 +173,7 @@ export default function Logo({
               rx={1.5}
               fill="white"
               opacity="0.9"
+              initial={{ y: -20 / 2, height: 20 }}
               animate={barAnimCentered(20, 32, 0.0)}
             />
 
@@ -185,6 +186,7 @@ export default function Logo({
               rx={1.5}
               fill="white"
               opacity="0.9"
+              initial={{ y: -32 / 2, height: 32 }}
               animate={barAnimCentered(32, 42, 0.25)}
             />
 
@@ -197,6 +199,7 @@ export default function Logo({
               rx={1.5}
               fill="white"
               opacity="0.9"
+              initial={{ y: -18 / 2, height: 18 }}
               animate={barAnimCentered(18, 26, 0.5)}
             />
           </g>
