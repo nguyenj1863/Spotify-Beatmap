@@ -67,7 +67,7 @@ export interface Paging<T> {
 export type TopTracksResponse = Paging<SpotifyTrack>;
 
 /** Playback state for /me/player/currently-playing */
-export interface SpotifyNowPlaying {
+export interface SpotifyCurrentlyPlaying {
   device?: {
     id?: string;
     is_active?: boolean;
