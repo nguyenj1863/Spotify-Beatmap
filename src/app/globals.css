@@ -42,3 +42,11 @@ body {
                0 0 32px rgba(255, 255, 255, 0.4);
   transform: translateY(-1px);
 }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.8px); }
+}
+.animate-bounce {
+  animation: bounce-slow 0.9s ease-in-out infinite;
+}
