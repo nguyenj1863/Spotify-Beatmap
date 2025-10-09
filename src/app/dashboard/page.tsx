@@ -133,14 +133,16 @@ const DashboardPage: React.FC = () => {
 					) : user ? (
 						<div className="flex items-center gap-4">
 							{user.images?.[0]?.url ? (
-								<Image
-									src={user.images[0].url}
-									alt={user.display_name || user.id}
-									width={64}
-									height={64}
-									className="rounded-full object-cover"
-									priority
-								/>
+								<div className="relative h-16 w-16 flex-none overflow-hidden rounded-full">
+									<Image
+										src={user.images[0].url}
+										alt={user.display_name || user.id}
+										fill
+										className="object-cover"
+										sizes="64px"
+										unoptimized
+									/>
+								</div>
 							) : (
 								<div
 									className="grid h-16 w-16 place-items-center rounded-full bg-white/10 text-white/50 text-xs"
