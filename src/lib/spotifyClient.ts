@@ -15,7 +15,7 @@ export class SpotifyService {
     }
 
     static async getTopTracks(): Promise<SpotifyTrack[]> {
-        const res = await this.fetchJson<{ items: SpotifyTrack[] }>('/api/spotify/top-tracks');
+        const res = await this.fetchJson<{ items: SpotifyTrack[] }>('/api/spotify/me/top-tracks');
         return res.items ?? [];
     }
 }
