@@ -1,20 +1,20 @@
 export default function NotFound() {
 	return (
 		<div className="flex flex-col items-center justify-center text-white text-center px-6">
-			<h1 className="text-6xl font-extrabold text-[#1db954] mb-3 drop-shadow-[0_0_15px_rgba(29,185,84,0.5)]">
+			<h1 className="text-7xl font-extrabold text-[#1db954] mb-4 drop-shadow-[0_0_20px_rgba(29,185,84,0.5)]">
 				404
 			</h1>
 
-			<h2 className="text-2xl font-semibold mb-4">Oops! The music took a little detour...</h2>
+			<h2 className="text-2xl sm:text-3xl font-semibold mb-6 max-w-lg">
+				Whoa! This page decided to dance to its own beat and wandered off!
+			</h2>
 
-			<p className="text-neutral-400 mb-8 leading-relaxed max-w-md">
-				Looks like this page decided to{" "}
-				<strong className="text-white">dance to its own beat</strong> and wandered off! Don't worry! ~ every great song
-				needs a little rest. <br />
+			<p className="text-neutral-400 mb-10 leading-relaxed max-w-md">
+				Don't hit pause just yet, the next track's waiting for you! <br />
 				<span className="text-white font-medium">Let's find your rhythm again!</span>
 			</p>
 
-			<p className="text-3xl mb-8">٩(•̤̀ᵕ•̤́๑)ᵎᵎᵎᵎ </p>
+			<p className="text-3xl mb-10 animate-bounce">٩(•̤̀ᵕ•̤́๑)ᵎᵎᵎᵎ</p>
 
 			<a
 				href="/"
