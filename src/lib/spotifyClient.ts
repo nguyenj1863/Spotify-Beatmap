@@ -1,6 +1,7 @@
 import type {
     SpotifyUser,
-    SpotifyTrack
+    SpotifyTrack,
+    SpotifyCurrentlyPlaying,
 } from '@/types/spotify'
 
 export class SpotifyService {
@@ -17,5 +18,9 @@ export class SpotifyService {
     static async getTopTracks(): Promise<SpotifyTrack[]> {
         const res = await this.fetchJson<{ items: SpotifyTrack[] }>('/api/spotify/me/top-tracks');
         return res.items ?? [];
+    }
+
+    static async getCurrentlyPlaying(): Promise<SpotifyCurrentlyPlaying | null> {
+        return this.fetchJson<SpotifyCurrentlyPlaying>('/api/spotify/me/player/currently-playing')
     }
 }
