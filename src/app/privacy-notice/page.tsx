@@ -93,6 +93,7 @@ export default function PrivacyNoticePage() {
             </ul>
           </nav>
 
+          {/* Spotify-green glow under TOC */}
           <div className="pointer-events-none absolute inset-x-0 -bottom-3 flex justify-center">
             <div className="h-5 w-2/3 md:w-1/2 rounded-full bg-emerald-400/25 blur-2xl" />
           </div>
@@ -213,6 +214,7 @@ export default function PrivacyNoticePage() {
             are outlined below.
           </p>
 
+          {/* 1. Spotify Data Access */}
           <h3
             id="processing-spotify"
             className="text-xl font-semibold mb-2 text-[#1ed760]"
@@ -220,30 +222,95 @@ export default function PrivacyNoticePage() {
             1. Spotify Data Access
           </h3>
           <p className="mb-3">
-            BeatMap integrates with your Spotify account using the OAuth system.
-            Depending on which features you use, we may access the following
-            data through Spotify’s API:
+            BeatMap integrates with your Spotify account using OAuth. Depending
+            on which features you use, we may access the following data through
+            Spotify's API:
           </p>
           <ul className="list-disc pl-6 marker:text-[#1ed760] text-neutral-300 space-y-1 mb-4">
             <li>
               <code className="bg-neutral-800 px-1 py-0.5 rounded text-white text-sm">
                 user-read-email
               </code>{" "}
-              — for secure account identification.
+              — read your email for account identification.
             </li>
             <li>
               <code className="bg-neutral-800 px-1 py-0.5 rounded text-white text-sm">
                 user-top-read
               </code>{" "}
-              — to display your top artists and tracks.
+              — display your top artists and tracks.
             </li>
             <li>
               <code className="bg-neutral-800 px-1 py-0.5 rounded text-white text-sm">
                 user-read-recently-played
               </code>{" "}
-              — to show your recently played items.
+              — show your recently played items for timelines and summaries.
+            </li>
+            <li>
+              <code className="bg-neutral-800 px-1 py-0.5 rounded text-white text-sm">
+                user-read-playback-state
+              </code>{" "}
+              — read your current playback state (device, is playing, progress)
+              to reflect real-time status.
+            </li>
+            <li>
+              <code className="bg-neutral-800 px-1 py-0.5 rounded text-white text-sm">
+                user-read-currently-playing
+              </code>{" "}
+              — show what you're currently playing (track/episode + progress).
             </li>
           </ul>
+          <p className="text-neutral-400">
+            You can revoke BeatMap's access at any time under{" "}
+            <a
+              href="https://www.spotify.com/account/apps/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-[#1ed760] hover:underline"
+            >
+              Spotify &gt; Apps
+            </a>
+            . Revoking access disables BeatMap's connection immediately.
+          </p>
+
+          {/* 2. Cookies */}
+          <h3
+            id="processing-cookies"
+            className="text-xl font-semibold mt-8 mb-2 text-[#1ed760]"
+          >
+            2. Cookies
+          </h3>
+          <p className="text-neutral-300 mb-3">
+            BeatMap uses a small number of <strong>essential cookies</strong> to
+            maintain your session and support core features. These cookies:
+          </p>
+          <ul className="list-disc pl-6 marker:text-[#1ed760] text-neutral-300 space-y-1 mb-4">
+            <li>Keep you logged in securely between requests.</li>
+            <li>Remember theme and consent preferences.</li>
+            <li>
+              Do <strong>not</strong> track activity outside BeatMap or create
+              advertising profiles.
+            </li>
+          </ul>
+          <p className="text-neutral-400">
+            We may use privacy-respecting analytics (e.g., Vercel Analytics or
+            Plausible) to understand aggregated usage trends—never tied to your
+            personal Spotify data.
+          </p>
+
+          {/* 3. Data Retention */}
+          <h3
+            id="processing-retention"
+            className="text-xl font-semibold mt-8 mb-2 text-[#1ed760]"
+          >
+            3. Data Retention
+          </h3>
+          <p className="text-neutral-300">
+            BeatMap processes Spotify data <strong>in real time</strong> while
+            you're logged in. We <strong>do not permanently store</strong> your
+            listening data (e.g., top or recent items). Authentication tokens
+            are securely stored only for the duration of your session—or until
+            you log out or revoke access via Spotify.
+          </p>
         </section>
 
         {/* Contact */}
@@ -279,6 +346,8 @@ export default function PrivacyNoticePage() {
             Back to the Music
           </Link>
         </div>
+
+        {/* Subtle page-bottom glow */}
         <div className="pointer-events-none absolute inset-x-0 -bottom-3 flex justify-center">
           <div className="h-2 w-2/3 md:w-1/2 rounded-full bg-emerald-400/25 blur-2xl" />
         </div>
