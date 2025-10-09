@@ -12,7 +12,6 @@ type Message = { text: string; type: MsgType } | null;
 export default function Page() {
   const [message, setMessage] = useState<Message>(null);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const searchParams = useSearchParams();
 
   const showMessage = useCallback((text: string, type: MsgType) => {
