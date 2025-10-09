@@ -11,13 +11,62 @@ export const metadata: Metadata = {
 export default function PrivacyNoticePage() {
   return (
     <main className="px-6 py-14 text-white">
-      <div className="mx-auto w-full max-w-4xl leading-relaxed">
+      <div className="mx-auto w-full max-w-5xl leading-relaxed">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-[#1ed760] mb-6 text-center">
           Privacy Notice
         </h1>
         <p className="text-center text-sm text-neutral-400 mb-12">
           Last updated: {LAST_UPDATED_DATE}
         </p>
+
+        {/* TOC */}
+        <nav
+          aria-label="Table of contents"
+          className="mb-10 rounded-xl bg-neutral-900 border border-neutral-700 p-6 shadow-xl"
+        >
+          <h2 className="text-xl text-[#1ed760] mb-4 font-bold tracking-wider uppercase">
+            Contents
+          </h2>
+          <ul className="space-y-3 text-neutral-300">
+            <li>
+              <a href="#controllers" className="text-lg text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors">
+                I. Information about us as controllers of your data
+              </a>
+            </li>
+            <li>
+              <a href="#rights" className="text-lg text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors">
+                II. The rights of users and data subjects
+              </a>
+            </li>
+            <li>
+              <a href="#processing" className="text-lg text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors">
+                III. Information about the data processing
+              </a>
+              <ul className="mt-3 ml-5 space-y-2 border-l border-neutral-700 pl-4">
+                <li>
+                  <a href="#processing-spotify" className="text-base text-neutral-400 hover:text-[#1ed760] hover:underline transition-colors">
+                    1. Spotify Data Access
+                  </a>
+                </li>
+                <li>
+                  <a href="#processing-cookies" className="text-base text-neutral-400 hover:text-[#1ed760] hover:underline transition-colors">
+                    2. Cookies
+                  </a>
+                </li>
+                <li>
+                  <a href="#processing-retention" className="text-base text-neutral-400 hover:text-[#1ed760] hover:underline transition-colors">
+                    3. Data Retention
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#contact" className="text-lg text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors">
+                IV. Contact Information
+              </a>
+            </li>
+          </ul>
+        </nav>
 
         <hr className="border-neutral-800 my-10" />
 
@@ -63,7 +112,7 @@ export default function PrivacyNoticePage() {
         </p>
 
         {/* I. Information about us as controllers */}
-        <section className="mb-10">
+        <section id="controllers" className="mb-10 scroll-mt-24">
           <h2 className="text-2xl font-semibold mb-3">
             I. Information about us as controllers of your data
           </h2>
@@ -90,7 +139,7 @@ export default function PrivacyNoticePage() {
         </section>
 
         {/* II. Rights of users */}
-        <section className="mb-10">
+        <section id="rights" className="mb-10 scroll-mt-24">
           <h2 className="text-2xl font-semibold mb-3">
             II. The rights of users and data subjects
           </h2>
@@ -124,7 +173,7 @@ export default function PrivacyNoticePage() {
         </section>
 
         {/* III. Data Processing */}
-        <section className="mb-10">
+        <section id="processing" className="mb-10 scroll-mt-24">
           <h2 className="text-2xl font-semibold mb-3">
             III. Information about the data processing
           </h2>
@@ -135,13 +184,16 @@ export default function PrivacyNoticePage() {
             are outlined below.
           </p>
 
-          <h3 className="text-xl font-semibold mb-2 text-[#1ed760]">
+          <h3
+            id="processing-spotify"
+            className="text-xl font-semibold mb-2 text-[#1ed760] scroll-mt-24"
+          >
             1. Spotify Data Access
           </h3>
           <p className="text-neutral-300 mb-3">
             BeatMap integrates with your Spotify account using the OAuth system.
             Depending on which features you use, we may access the following
-            data through Spotify's API:
+            data through Spotify’s API:
           </p>
           <ul className="list-disc pl-6 marker:text-[#1ed760] text-neutral-300 space-y-1 mb-4">
             <li>
@@ -172,7 +224,7 @@ export default function PrivacyNoticePage() {
           </ul>
 
           <p className="text-neutral-400 mt-4">
-            You can revoke BeatMap's access at any time under{" "}
+            You can revoke BeatMap’s access at any time under{" "}
             <a
               href="https://www.spotify.com/account/apps/"
               target="_blank"
@@ -181,10 +233,13 @@ export default function PrivacyNoticePage() {
             >
               Spotify &gt; Apps
             </a>
-            . Revoking access disables BeatMap's connection immediately.
+            . Revoking access disables BeatMap’s connection immediately.
           </p>
 
-          <h3 className="text-xl font-semibold mt-6 mb-2 text-[#1ed760]">
+          <h3
+            id="processing-cookies"
+            className="text-xl font-semibold mt-6 mb-2 text-[#1ed760] scroll-mt-24"
+          >
             2. Cookies
           </h3>
           <p className="text-neutral-300 mb-3">
@@ -200,7 +255,10 @@ export default function PrivacyNoticePage() {
             </li>
           </ul>
 
-          <h3 className="text-xl font-semibold mt-6 mb-2 text-[#1ed760]">
+          <h3
+            id="processing-retention"
+            className="text-xl font-semibold mt-6 mb-2 text-[#1ed760] scroll-mt-24"
+          >
             3. Data Retention
           </h3>
           <p className="text-neutral-300 mb-3">
@@ -214,10 +272,8 @@ export default function PrivacyNoticePage() {
         <hr className="border-neutral-800 my-10" />
 
         {/* Contact */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-3">
-            IV. Contact Information
-          </h2>
+        <section id="contact" className="mb-12 scroll-mt-24">
+          <h2 className="text-2xl font-semibold mb-3">IV. Contact Information</h2>
           <p className="text-neutral-300 mb-2">
             For privacy-related inquiries, data access requests, or complaints,
             please contact:
