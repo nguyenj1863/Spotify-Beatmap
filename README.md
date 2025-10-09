@@ -28,10 +28,7 @@ Your dark‑glass Spotify playground to explore top tracks & artists, cruise pla
 
 ## 📷 Screenshots (placeholders)
 
-Add these to `/docs` and update paths as you take them:
-
 * `docs/screenshot-login.png` — login screen
-* `docs/screenshot-dashboard.png` — dashboard overview
 
 ```md
 ![Login](./docs/screenshot-login.png)
