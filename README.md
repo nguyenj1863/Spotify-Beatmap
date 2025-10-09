@@ -31,7 +31,7 @@ Your dark‑glass Spotify playground to explore top tracks & artists, cruise pla
 * `docs/screenshot-login.png` — login screen
 
 ```md
-![Login](./docs/screenshot-login.png)
+![Login](docs/screenshot-login.png)
 ```
 
 ---
