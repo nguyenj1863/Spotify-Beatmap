@@ -15,12 +15,7 @@ export async function GET(req:Request) {
     const storedState = await getCookie(COOKIE_NAMES.oauthState);
     const verifier = await getCookie(COOKIE_NAMES.pkceVerifier);
 
-    if (!code || !state || !storedState || state !== storedState || !verifier) {
-        return NextResponse.json(
-            { error: "Invalid state or missing verifier", code, state, storedState, verifier },
-            { status: 400 }
-        );
-    }
+    if (!code || !state || !storedState || state !== storedState || !verifier) return NextResponse.redirect(new URL(`${base}/?error=login_failed`));
 
     await deleteCookie(COOKIE_NAMES.oauthState);
     await deleteCookie(COOKIE_NAMES.pkceVerifier);
