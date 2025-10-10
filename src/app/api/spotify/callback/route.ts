@@ -25,6 +25,6 @@ export async function GET(req:Request) {
     await setCookie(COOKIE_NAMES.session, JSON.stringify(tokens), tokens.expires_in);
 
 
-    const url = new URL(`${base}/dashboard`);
+    const url = new URL(`${base}/dashboard/overview`);
     return NextResponse.redirect(url);
 }
