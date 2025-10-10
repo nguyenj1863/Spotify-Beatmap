@@ -11,7 +11,33 @@ export const metadata: Metadata = {
 export default function PrivacyNoticePage() {
   return (
     <main className="relative px-6 py-16 text-white overflow-hidden">
-      <div className="relative mx-auto w-full max-w-5xl leading-relaxed">
+      <div className="relative mx-auto w-full max-w-6xl leading-relaxed">
+        {/* Back Button */}
+        <div className="mb-8">
+          <Link
+            href="/"
+            aria-label="Go back to the previous page"
+            className="flex items-center white-glow"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-5 h-5 mr-2"
+            >
+              <path d="m12 19-7-7 7-7" />
+              <path d="M19 12H5" />
+            </svg>
+            <span className="font-medium">Back</span>
+          </Link>
+        </div>
+        
         {/* Header */}
         <header className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-[#1ed760]">
@@ -26,16 +52,16 @@ export default function PrivacyNoticePage() {
         <section className="relative mb-16">
           <nav
             aria-label="Table of contents"
-            className="rounded-xl bg-white/5 border border-white/10 p-6 backdrop-blur-sm"
+            className="rounded-l bg-white/5 border border-white/10 p-6 backdrop-blur-sm"
           >
-            <h2 className="text-xl text-[#1ed760] mb-4 font-bold tracking-wider uppercase">
+            <h2 className="text-lg text-[#1ed760] mb-4 font-bold tracking-wider uppercase">
               Contents
             </h2>
             <ul className="space-y-3 text-neutral-300">
               <li>
                 <a
                   href="#controllers"
-                  className="text-lg text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors"
+                  className="text-l text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors"
                 >
                   I. Information about us as controllers of your data
                 </a>
@@ -43,7 +69,7 @@ export default function PrivacyNoticePage() {
               <li>
                 <a
                   href="#rights"
-                  className="text-lg text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors"
+                  className="text-l text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors"
                 >
                   II. The rights of users and data subjects
                 </a>
@@ -51,7 +77,7 @@ export default function PrivacyNoticePage() {
               <li>
                 <a
                   href="#processing"
-                  className="text-lg text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors"
+                  className="text-l text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors"
                 >
                   III. Information about the data processing
                 </a>
@@ -85,7 +111,7 @@ export default function PrivacyNoticePage() {
               <li>
                 <a
                   href="#contact"
-                  className="text-lg text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors"
+                  className="text-l text-neutral-200 font-semibold hover:text-[#1ed760] transition-colors"
                 >
                   IV. Contact Information
                 </a>
