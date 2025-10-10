@@ -6,7 +6,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
   background: #121212;
   color: #fff;
   position: relative;
@@ -50,4 +49,11 @@ body {
 }
 .animate-bounce {
   animation: bounce-slow 0.9s ease-in-out infinite;
+}
+
+.dashboard-root {
+  margin-right: auto !important; 
+  align-self: stretch !important;
+  width: 100vw !important;
+  min-height: 100dvh !important;
 }
