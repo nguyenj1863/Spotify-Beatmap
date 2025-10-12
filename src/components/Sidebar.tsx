@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoutButton from "./LogoutButton";
 
-const navItems = [
-    { name: "Overview", href: "/dashboard/overview" },
-];
+const NAV_ITEMS = [
+  { name: "Overview", href: "/dashboard/overview" },
+] as const;
 
-const Sidebar: React.FC = () => {
+export default function Sidebar() {
   const pathname = usePathname();
 
   return (
@@ -20,8 +20,8 @@ const Sidebar: React.FC = () => {
           </div>
         </div>
 
-        <nav className="flex flex-col gap-1">
-          {navItems.map((item) => {
+        <nav className="flex flex-col gap-1" aria-label="Sidebar">
+          {NAV_ITEMS.map((item) => {
             const active = pathname?.startsWith(item.href);
             return (
               <Link
@@ -32,7 +32,9 @@ const Sidebar: React.FC = () => {
                   active
                     ? "bg-white/10 text-white"
                     : "text-neutral-400 hover:bg-white/10 hover:text-white",
-                ].join(" ")}
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
                 aria-current={active ? "page" : undefined}
               >
                 {item.name}
@@ -49,6 +51,4 @@ const Sidebar: React.FC = () => {
       </div>
     </aside>
   );
-};
-
-export default Sidebar;
+}
