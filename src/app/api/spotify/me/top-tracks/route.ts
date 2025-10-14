@@ -79,12 +79,3 @@ export async function GET(req: Request) {
     const data = await spotifyFetch(endpoint, session.access_token);
     return NextResponse.json(data);
 }
-
-function intOrDefault(v: string | null, d: number) {
-    const n = Number(v);
-    return Number.isFinite(n) ? Math.trunc(n) : d;
-}
-
-function clamp(n: number, min: number, max: number) {
-    return Math.min(max, Math.max(min, n));
-}
