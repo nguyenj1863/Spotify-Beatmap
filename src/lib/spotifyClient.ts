@@ -1,6 +1,7 @@
 import type {
     SpotifyUser,
     SpotifyTrack,
+    SpotifyArtist,
     SpotifyCurrentlyPlaying,
     TimeRange,
     TopItemsOptions
@@ -79,15 +80,29 @@ export class SpotifyService {
     }
 
     /**
-   * Fetch top tracks with scalable options.
+   * Fetch top tracks
    * Server route expected: /api/spotify/me/top?type=tracks&time_range=&limit=&offset=
    */
     static async getTopTracks(
         options?: TopItemsOptions,
         init?: RequestInit
-    ): Promise<SpotifyTrack[]> {
+    ): Promise<SpotifyArtist[]> {
         const { limit, offset, time_range } = this.validateTopOptions(options);
         const query = this.qs({ type: "tracks", time_range, limit, offset });
+        const res = await this.fetchJson<{ items: SpotifyTrack[] }>(`/me/top${query}`, init);
+        return res.items ?? [];
+    }
+
+     /**
+   * Fetch top artists
+   * Server route expected: /api/spotify/me/top?type=artists&time_range=&limit=&offset=
+   */
+    static async getTopArtist(
+        options?: TopItemsOptions,
+        init?: RequestInit
+    ): Promise<SpotifyTrack[]> {
+        const { limit, offset, time_range } = this.validateTopOptions(options);
+        const query = this.qs({ type: "artists", time_range, limit, offset });
         const res = await this.fetchJson<{ items: SpotifyTrack[] }>(`/me/top${query}`, init);
         return res.items ?? [];
     }
