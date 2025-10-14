@@ -2,14 +2,9 @@ import type {
     SpotifyUser,
     SpotifyTrack,
     SpotifyCurrentlyPlaying,
+    TimeRange,
+    TopItemsOptions
 } from '@/types/spotify'
-
-type TimeRange = "long_term" | "medium_term" | "short_term";
-export interface TopItemsOptions {
-    limit?: number;          // 1..50 (default 20)
-    offset?: number;         // >= 0 (default 0)
-    time_range?: TimeRange;  // default "medium_term"
-}
 
 const API_BASE = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}/api/spotify`
@@ -96,7 +91,7 @@ export class SpotifyService {
         const res = await this.fetchJson<{ items: SpotifyTrack[] }>(`/me/top${query}`, init);
         return res.items ?? [];
     }
-    
+
     /** Fetch user's currently playing track */
     static async getCurrentlyPlaying(): Promise<SpotifyCurrentlyPlaying | null> {
         return this.fetchJson<SpotifyCurrentlyPlaying>('/me/player/currently-playing')

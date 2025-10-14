@@ -1,3 +1,5 @@
+// types/spotify.ts
+
 /** Generic image object used across Spotify entities */
 export interface SpotifyImage {
   url: string;
@@ -107,3 +109,17 @@ export interface SpotifyCurrentlyPlaying {
   };
 }
 
+export const TIME_RANGES = ["long_term", "medium_term", "short_term"] as const;
+export type TimeRange = (typeof TIME_RANGES)[number];
+
+export const TOP_ITEM_TYPES = ["artists", "tracks"] as const;
+export type TopItemType = (typeof TOP_ITEM_TYPES)[number];
+
+export interface TopItemsOptions {
+  /** 1..50 (default 20) */
+  limit?: number;
+  /** >= 0 (default 0) */
+  offset?: number;
+  /** default "medium_term" */
+  time_range?: TimeRange;
+}
