@@ -97,7 +97,7 @@ export class SpotifyService {
    * Fetch top artists
    * Server route expected: /api/spotify/me/top?type=artists&time_range=&limit=&offset=
    */
-    static async getTopArtist(
+    static async getTopArtists(
         options?: TopItemsOptions,
         init?: RequestInit
     ): Promise<SpotifyTrack[]> {
