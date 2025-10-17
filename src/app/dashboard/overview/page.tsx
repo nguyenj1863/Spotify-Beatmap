@@ -15,12 +15,7 @@ import type {
 } from "@/types/spotify";
 import Logo from "@/components/Logo";
 import { BarChartIcon, CalendarIcon, ClockIcon, ExternalLinkIcon, MicIcon, MusicIcon, PlaceholderIcon, PlayIcon, RefreshIcon, TrendUpIcon, UserCircleIcon } from "@/components/icons";
-
-/* ------------------------------ Config ----------------------------------- */
-const SHOW_ARTISTS = 8;
-const SHOW_TRACKS = 12;
-const SHOW_RECENT = 5;
-
+import { SHOW_ARTISTS, SHOW_TRACKS, SHOW_RECENT, msToHours, getSpotifyImage } from "@/utils/spotify";
 /* ------------------------------ Skeletons -------------------------------- */
 
 const Skeleton: React.FC<{ className?: string; rounded?: boolean | string }> = ({
@@ -50,28 +45,6 @@ const CardSkeleton: React.FC = () => (
     </div>
   </div>
 );
-
-/* ------------------------------ Utilities -------------------------------- */
-
-// ms → hours with 1 decimal
-const msToHours = (ms: number) => Math.round((ms / 36e5) * 10) / 10;
-
-// Pick the image closest to a target size (defaults to 64px square).
-const getSpotifyImage = (
-  images?: Array<{ url: string; width?: number | null; height?: number | null }>,
-  target = 64
-): string => {
-  if (!images || images.length === 0) return "";
-  const scored = images
-    .map((img) => ({
-      url: img.url,
-      score:
-        Math.abs((img.width ?? target) - target) +
-        Math.abs((img.height ?? target) - target),
-    }))
-    .sort((a, b) => a.score - b.score);
-  return scored[0]?.url ?? images[0].url ?? "";
-};
 
 /* --------------------------------- Page ---------------------------------- */
 
