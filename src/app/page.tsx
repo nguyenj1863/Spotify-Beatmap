@@ -5,9 +5,16 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import LoginButton from "@components/LoginButton";
 import Logo from "@components/Logo";
+import type { Metadata } from "next";
 
 type MsgType = "info" | "success" | "error";
 type Message = { text: string; type: MsgType } | null;
+
+export const metadata: Metadata = {
+  title: "Login | BeatMap",
+  description:
+    "Sign in with Spotify to explore your listening habits, top tracks, and personalized music analytics on BeatMap.",
+};
 
 export default function Page() {
   const [message, setMessage] = useState<Message>(null);
