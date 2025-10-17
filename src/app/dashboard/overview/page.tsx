@@ -636,7 +636,7 @@ function UserChip({ user }: { user: SpotifyUser }) {
 
   return (
     <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-sm">
-      <div className="relative h-10 w-10 overflow-hidden rounded-full bg-white/10 ring-2 ring-[#1db954]/20 flex-shrink-0">
+      <div className="relative h-10 w-10 overflow-hidden rounded-full bg-white/10 flex-shrink-0">
         {avatar ? (
           <Image
             src={avatar}
@@ -644,7 +644,6 @@ function UserChip({ user }: { user: SpotifyUser }) {
             fill
             className="object-cover"
             sizes="40px"
-            unoptimized
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center">
